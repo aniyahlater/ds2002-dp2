@@ -18,14 +18,15 @@ for filename in os.listdir(directory):
     with open(os.path.join(directory, filename)) as f:
         try:
             file_data = json.load(f)
-            print(f, "successful upload")
+            # print(filename, "successful upload")
+
             try:
                 collection.insert_many(file_data)
                 #print(file_data, "Succesful Upload")
             except Exception as e:
                 print(e, "Error when importing into MONGO")
+
         except Exception as e:
-                print(e)
-                print(f, "There was a failure")
+                print("Exception", e, filename)
 
         
